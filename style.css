@@ -1,0 +1,232 @@
+/* Kanban Board — dark minimal theme with a gold accent. */
+
+:root {
+  --bg: #0f0f10;
+  --panel: #17171a;
+  --card: #1f1f24;
+  --border: #2b2b31;
+  --text: #f2f0e9;
+  --muted: #9a978c;
+  --gold: #e8b64c;
+  --gold-dim: #b98a2e;
+  --green: #4ade80;
+  --blue: #60a5fa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header ------------------------------------------------------------ */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.ghost-btn {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.ghost-btn:hover {
+  background: rgba(232, 182, 76, 0.1);
+}
+
+/* --- Board layout ------------------------------------------------------ */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+  flex: 1;
+  align-items: start;
+}
+
+.column {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem;
+  min-height: 200px;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.column-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-todo { background: var(--blue); }
+.dot-doing { background: var(--gold); }
+.dot-done { background: var(--green); }
+
+.count {
+  margin-left: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 0.1rem 0.55rem;
+}
+
+/* --- Cards ------------------------------------------------------------- */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px;
+  border-radius: 8px;
+  transition: background 0.15s, outline 0.15s;
+}
+
+/* Highlighted while a card hovers over it during a drag */
+.card-list.drag-over {
+  background: rgba(232, 182, 76, 0.06);
+  outline: 2px dashed var(--gold-dim);
+  outline-offset: -2px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: grab;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card.dragging {
+  opacity: 0.4;
+}
+
+.card span {
+  flex: 1;
+  word-break: break-word;
+}
+
+.card .delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.1rem;
+}
+
+.card .delete-btn:hover {
+  color: #f87171;
+}
+
+.empty-note {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.8rem 0;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+/* --- Add-card form ----------------------------------------------------- */
+.add-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.add-form input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.add-form input:focus {
+  outline: 1px solid var(--gold-dim);
+}
+
+.add-form button {
+  background: var(--gold);
+  border: none;
+  border-radius: 8px;
+  color: #141414;
+  font-weight: 600;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.add-form button:hover {
+  background: #f2c463;
+}
+
+/* --- Footer ------------------------------------------------------------ */
+.hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* --- Small screens: stack the columns ---------------------------------- */
+@media (max-width: 720px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
