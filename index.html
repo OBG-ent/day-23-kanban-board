@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban Board — drag, drop, done ✅</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Kanban Board</h1>
+      <p class="subtitle">Drag cards between columns. Your board auto-saves. ✅</p>
+    </div>
+    <button id="reset-btn" class="ghost-btn" title="Restore the demo board">
+      ↺ Reset demo
+    </button>
+  </header>
+
+  <main class="board">
+    <!-- Each column: header (name + count), card list, add-card form -->
+    <section class="column" data-column="todo">
+      <div class="column-header">
+        <span class="dot dot-todo"></span>
+        <h2>To Do</h2>
+        <span class="count" id="count-todo">0</span>
+      </div>
+      <div class="card-list" id="list-todo"></div>
+      <form class="add-form" data-form="todo">
+        <input type="text" placeholder="+ Add a task…" maxlength="120" />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="column" data-column="doing">
+      <div class="column-header">
+        <span class="dot dot-doing"></span>
+        <h2>In Progress</h2>
+        <span class="count" id="count-doing">0</span>
+      </div>
+      <div class="card-list" id="list-doing"></div>
+      <form class="add-form" data-form="doing">
+        <input type="text" placeholder="+ Add a task…" maxlength="120" />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="column" data-column="done">
+      <div class="column-header">
+        <span class="dot dot-done"></span>
+        <h2>Done</h2>
+        <span class="count" id="count-done">0</span>
+      </div>
+      <div class="card-list" id="list-done"></div>
+      <form class="add-form" data-form="done">
+        <input type="text" placeholder="+ Add a task…" maxlength="120" />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="hint">
+    💡 Tip: double-click a card to edit it · everything saves to your browser automatically
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
